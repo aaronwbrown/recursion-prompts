@@ -39,32 +39,21 @@ console.log(sum(myArray));
 
 
 // 3. Sum all numbers in an array containing nested arrays.
-// Example: arraySum([1,[2,3],[[4]],5]); // 15
+// Example: arraySum([1,[2,3],  ,5]); // 15
 var arraySum = function(arr) {
   var array = arr.slice();
-  var results = [];
-  // create array copy
-  // pull each item from array, if the item is another array, then recurse again
-  // for loop over each item to see if it's an array, if it's an array then sum
-  // and then push - if it's not an array then push
-  // once my results array is full of single values then I can sum the results array
-  var sumR = function(array) {
-    if (array.length === 0) {
-      return undefined;
-    } else if (array.length === 1) {
-      return array[0];
-    } else {
-      for (var i = 0; i < array.length; i++) {
-        if (Array.isArray(array[i])) {
-          return sumR(array[i]);
-        } else {
-          return array[i] + sumR(array);
-        }
-      }
-    }
-  };
+  var sum = 0;
 
-  return sumR(arr);
+  for (var i = 0; i < array.length; i++) {
+    if (array[i] instanceof Array) {
+      sum += arraySum(array[i]);
+    }
+    if (typeof array[i] === "number") {
+      sum += array[i];
+    }
+  }
+
+  return sum;
 
 };
 
@@ -75,14 +64,35 @@ console.log(arraySum(mixedArr));
 // 4. Check whether a number is even or not.
 var isEven = function(n) {
 
+  if (n < 0) {
+    n = n * -1;
+  }
+
+  if (n === 0) {
+    return true;
+  } else if (n === 1) {
+    return false;
+  } else {
+    return isEven(n - 2);
+  }
+
 };
+
+console.log(isEven(-31));
 
 
 // 5. Get the integers in range (x, y).
 // Example:  range(2, 9);  // [3, 4, 5, 6, 7, 8]
 var range = function(x, y) {
 
+  var result = [];
+
+  result.push(x);
+  return x == y ? result : result.concat(range(x<y ? ++x : --x, y));
+
 };
+
+console.log(range(2, 9));
 
 
 // 6. Compute the exponent of a number.
