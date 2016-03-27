@@ -85,14 +85,10 @@ console.log(isEven(-31));
 // Example:  range(2, 9);  // [3, 4, 5, 6, 7, 8]
 var range = function(x, y) {
 
-  var result = [];
-
-  result.push(x);
-  return x == y ? result : result.concat(range(x<y ? ++x : --x, y));
 
 };
 
-console.log(range(2, 9));
+
 
 
 // 6. Compute the exponent of a number.
@@ -102,7 +98,19 @@ console.log(range(2, 9));
 // https://www.khanacademy.org/computing/computer-science/algorithms/recursive-algorithms/a/computing-powers-of-a-number
 var exponent = function(base, exp) {
 
+
+  if (exp === 0) {
+    return 1;
+  } else if (exp < 0){
+    exp = exp * -1;
+    return 1 / (base * exponent(base, exp - 1));
+  }else {
+    return base * exponent(base, exp - 1);
+  }
+
 };
+
+console.log(exponent(3, -3));
 
 
 // 7. Write a function that accepts a string a reverses it.
