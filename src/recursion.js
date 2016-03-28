@@ -115,12 +115,37 @@ console.log(exponent(3, -3));
 
 // 7. Write a function that accepts a string a reverses it.
 var reverse = function(string) {
+  // create copy of string
+  var str = string.slice();
+  var result = "";
+
+  // base case = when str.length === 0
+    //  return result
+
+  // else
+    // substring last element and add to results array
+
+  var helper = function(stringR) {
+    if (stringR.length === 0) {
+      return result;
+    } else {
+      result += stringR.charAt(stringR.length - 1);
+    }
+    return helper(stringR.substring(0,stringR.length - 1));
+  };
+
+  helper(str);
+  return result;
 
 };
+
+console.log(reverse("Racecar"));
 
 
 // 8. Write a function that determines if a string is a palindrome.
 var palindrome = function(string) {
+
+
 
 };
 
