@@ -117,25 +117,13 @@ console.log(exponent(3, -3));
 var reverse = function(string) {
   // create copy of string
   var str = string.slice();
-  var result = "";
 
-  // base case = when str.length === 0
-    //  return result
-
-  // else
-    // substring last element and add to results array
-
-  var helper = function(stringR) {
-    if (stringR.length === 0) {
-      return result;
+    if (str.length === 0) {
+        return "";
     } else {
-      result += stringR.charAt(stringR.length - 1);
+        return reverse(str.slice(1)) + str.charAt(0);
     }
-    return helper(stringR.substring(0,stringR.length - 1));
-  };
 
-  helper(str);
-  return result;
 
 };
 
