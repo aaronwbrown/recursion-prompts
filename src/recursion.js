@@ -118,13 +118,11 @@ var reverse = function(string) {
   // create copy of string
   var str = string.slice();
 
-    if (str.length === 0) {
-        return "";
-    } else {
-        return reverse(str.slice(1)) + str.charAt(0);
-    }
-
-
+  if (str.length === 0) {
+    return "";
+  } else {
+    return reverse(str.slice(1)) + str.charAt(0);
+  }
 };
 
 console.log(reverse("Racecar"));
@@ -133,9 +131,19 @@ console.log(reverse("Racecar"));
 // 8. Write a function that determines if a string is a palindrome.
 var palindrome = function(string) {
 
+  var str = string.split(" ").join("").toLowerCase();
 
+  if (str.length <= 1) {
+    return true;
+  } else if (str.slice(0,1) !== (str.slice(-1))) {
+    return false;
+  } else {
+    return palindrome(str.slice(1, -1));
+  }
 
 };
+
+console.log(palindrome("sAip puaki v iKaup Pias"));
 
 
 // 9. Write a function that returns the remainder of x divided by y without using the
@@ -145,6 +153,8 @@ var palindrome = function(string) {
 // modulo(22,6) // 4
 var modulo = function(x, y) {
 
+
+
 };
 
 
@@ -152,7 +162,20 @@ var modulo = function(x, y) {
 // JavaScript's Math object.
 var multiply = function(x, y) {
 
+  if (x < 0 && y < 0) {
+    x = -x;
+    y = -y;
+  }
+
+  if (y === 0) {
+    return 0;
+  } else {
+    return x + multiply(x, y - 1);
+  }
+
 };
+
+console.log(multiply(-275, -502));
 
 
 // 11. Write a function that divides two numbers without using the / operator  or
