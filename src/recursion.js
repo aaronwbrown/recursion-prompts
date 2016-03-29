@@ -85,10 +85,31 @@ console.log(isEven(-31));
 // Example:  range(2, 9);  // [3, 4, 5, 6, 7, 8]
 var range = function(x, y) {
 
+  if (y - x === 0 || x === y - 1) {
+    return [];
+  }
+
+  if (x < y) {
+    if (y - x === 2) {
+      return [x + 1];
+    } else {
+      var list = range(x, y - 1);
+      list.push(y - 1);
+      return list;
+    }
+  } else {
+    if (x - y === 2) {
+      return [y + 1];
+    } else {
+      var list = range(x, y + 1);
+      list.push(y + 1);
+      return list;
+    }
+  }
 
 };
 
-
+console.log(range(19,10));
 
 
 // 6. Compute the exponent of a number.
@@ -153,9 +174,17 @@ console.log(palindrome("sAip puaki v iKaup Pias"));
 // modulo(22,6) // 4
 var modulo = function(x, y) {
 
-
+  if (y === 0 || x === 0) {
+    return 0;
+  } else if (y < x) {
+    return x - y;
+  } else {
+    return y + modulo(x - 1, y);
+  }
 
 };
+
+console.log(modulo(15, 7));
 
 
 // 10. Write a function that multiplies two numbers without using the * operator  or
@@ -180,9 +209,15 @@ console.log(multiply(-275, -502));
 
 // 11. Write a function that divides two numbers without using the / operator  or
 // JavaScript's Math object.
-var divide = function(x, y) {
+// var divide = function(x, y) {
 
-};
+//   if (y === 0) {
+//     return 0;
+//   } else if () {
+
+//   }
+
+// };
 
 
 // 12. Find the greatest common divisor (gcd) of two positive numbers.  The GCD of two
@@ -266,7 +301,15 @@ var replaceKeysInObj = function(obj, key, newKey) {
 // Note:  The 0 is not counted.
 var fibonacci = function(n) {
 
+  if (n <= 2) {
+    return 1;
+  } else {
+    return fibonacci(n-2) + fibonacci(n-1);
+  }
+
 };
+
+console.log(fibonacci(8));
 
 
 // 22. Return the Fibonacci number located at index n of the Fibonacci sequence.
